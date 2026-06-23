@@ -1,0 +1,123 @@
+# GPO-wallpaper-Deployment-
+GPO-wallpaper-Deployment 
+
+# Group Policy Wallpaper Deployment Lab
+
+## Objective
+
+Deploy a company wallpaper to users in a specific Organizational Unit (OU) using Group Policy Objects (GPO).
+
+## Lab Environment
+
+- Windows Server 2022 Domain Controller
+- Windows 10 Client
+- VMware Workstation
+- Active Directory Domain Services
+- Group Policy Management
+
+Domain:
+
+charlycyber.local
+
+## Tasks Performed
+
+### 1. Created Organizational Units
+
+The following OUs were created:
+
+- HR
+- FINANCE
+- ITGUYS
+
+### 2. Created Domain Users
+
+Users were created and placed inside their respective OUs.
+
+Example:
+
+- HRuser1 (HR OU)
+
+### 3. Created a Wallpaper GPO
+
+A Group Policy Object named:
+
+wallpaper policy
+
+was created and linked to the HR OU.
+
+### 4. Configured Wallpaper Policy
+
+Path:
+
+User Configuration → Policies → Administrative Templates → Desktop → Desktop → Desktop Wallpaper
+
+Configuration:
+
+- Enabled
+- Wallpaper Style: Fill
+
+Initial wallpaper path:
+
+C:\Windows\Web\Wallpaper\Windows\img0.jpg
+
+### 5. Verified Policy Application
+
+Commands used:
+
+gpupdate /force
+
+gpresult /r
+
+Results confirmed that the wallpaper policy was successfully applied to users in the HR OU.
+
+### 6. Tested Network Share Deployment
+
+A shared folder named wallpapers was created on the Domain Controller.
+
+Shared path:
+
+\192.168.134.10\wallpapers
+
+The wallpaper file:
+
+img0.jpg
+
+was stored in the shared folder.
+
+Connectivity was verified using:
+
+dir \192.168.134.10\wallpapers
+
+### 7. Troubleshooting
+
+Issue:
+
+Hostname-based share access failed.
+
+Example:
+
+\WIN-200J89MC3AS\wallpapers
+
+Resolution:
+
+Used the server IP address while investigating DNS/name-resolution issues.
+
+## Skills Demonstrated
+
+- Active Directory Administration
+- Organizational Unit Management
+- User Management
+- Group Policy Administration
+- Network Share Configuration
+- Windows Troubleshooting
+- DNS Troubleshooting
+- User Policy Deployment
+
+## Outcome
+
+Successfully deployed a desktop wallpaper to users within the HR OU through Group Policy and validated access to a centralized network share.
+
+# screenshots
+<img width="3024" height="4032" alt="IMG_278D8BBB-034B-47BD-BDA4-3303B227EE3F" src="https://github.com/user-attachments/assets/4f4aa0ff-0a28-455d-9119-3136b0b4bc15" />
+<img width="4032" height="3024" alt="IMG_451BA02C-6B5A-4C67-8A76-ABBB97CA9B14" src="https://github.com/user-attachments/assets/1d0b500a-9ca0-47c2-a5e9-080fceb3564c" />
+<img width="3024" height="4032" alt="IMG_A675E7C4-A9DB-42DA-9383-344A8EF85846" src="https://github.com/user-attachments/assets/50101f9c-467a-40d8-9231-5dee74c92b2d" />
