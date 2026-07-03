@@ -1,0 +1,140 @@
+# Granting Local Administrator Privileges Using Group Policy
+
+## Overview
+
+This lab demonstrates how to delegate local administrator rights to a specific Active Directory security group using Group Policy Preferences instead of manually adding users to the local Administrators group on each workstation.
+
+This approach follows enterprise best practices by assigning permissions to security groups rather than individual users.
+
+---
+
+## Objective
+
+Grant local administrator privileges to members of the **IT SUPPORT ADMINS** security group on all computers inside the **Workstation PCs OU**.
+
+---
+
+## Lab Environment
+
+- Windows Server 2022 Domain Controller
+- Windows 11 Client
+- VMware Workstation
+- Active Directory Domain Services
+- Group Policy Management
+- Domain: CHARLYCYBER.LOCAL
+
+---
+
+## Steps Performed
+
+### 1. Created an Active Directory Security Group
+
+Created:
+
+- IT SUPPORT ADMINS
+
+Added:
+
+- ITguyuser1
+
+---
+
+### 2. Created a New Group Policy
+
+Created:
+
+IT SUPPORT ADMIN RIGHTS
+
+Linked it to:
+
+Workstation PCs OU
+
+---
+
+### 3. Configured Group Policy Preferences
+
+Navigated to:
+
+Computer Configuration
+
+→ Preferences
+
+→ Control Panel Settings
+
+→ Local Users and Groups
+
+Configured:
+
+- Action: Update
+- Group: Administrators (built-in)
+- Added:
+    CHARLYCYBER\IT SUPPORT ADMINS
+
+---
+
+### 4. Applied the Policy
+
+Executed:
+
+gpupdate /force
+
+Successfully updated:
+
+- Computer Policy
+- User Policy
+
+---
+
+### 5. Verification
+
+Verified that:
+
+CHARLYCYBER\IT SUPPORT ADMINS
+
+appeared inside:
+
+Local Administrators Group
+
+using:
+
+net localgroup administrators
+
+---
+
+### 6. Functional Testing
+
+Logged in as:
+
+ITguyuser1
+
+Successfully performed administrative actions including:
+
+- Managing Windows Services
+- Starting/Stopping Print Spooler
+- Opening Computer Management
+
+without requiring administrator credentials.
+
+---
+
+## Skills Demonstrated
+
+- Active Directory
+- Organizational Units
+- Security Groups
+- Group Policy Management
+- Group Policy Preferences
+- Local Administrator Delegation
+- Windows Administration
+- User Permission Management
+- Enterprise Access Control
+
+---
+
+## Key Takeaway
+Lu
+Using Group Policy Preferences allows administrators to centrally manage local administrator rights through security groups, making administration scalable, secure, and easier to maintain across enterprise environments
+
+
+## screnshots 
+
