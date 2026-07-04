@@ -1,0 +1,132 @@
+# Active Directory Group Membership Management
+
+## Overview
+
+This lab demonstrates how to create and manage Active Directory Security Groups to simplify permission management in an enterprise environment.
+
+Rather than assigning permissions directly to individual users, organizations use Security Groups to efficiently manage access to shared resources, printers, applications, and administrative privileges.
+
+---
+
+## Objective
+
+- Create department-based Security Groups
+- Add users to the appropriate groups
+- Verify group membership
+- Understand the relationship between Organizational Units (OUs) and Security Groups
+- Understand Microsoft's best practice for assigning permissions
+
+---
+
+## Lab Environment
+
+- Windows Server 2022
+- Windows 11 Client
+- Active Directory Domain Services
+- Group Policy Management
+- VMware Workstation
+- Domain: CHARLYCYBER.LOCAL
+
+---
+
+## Security Groups Created
+
+- HR USERS
+- FINANCE USERS
+- SALES USERS
+- IT SUPPORT ADMINS
+
+Each group was created as:
+
+- Group Scope: Global
+- Group Type: Security
+
+---
+
+## Users Added
+
+| User | Group |
+|------|-------|
+| HRUser1 | HR USERS |
+| FinanceUser1 | FINANCE USERS |
+| SALESUser2 | SALES USERS |
+| ITguyuser1 | IT SUPPORT ADMINS |
+
+---
+
+## Verification
+
+Verified group membership by:
+
+- Opening the **Member Of** tab in Active Directory Users and Computers
+- Viewing each group's **Members** list
+- Using the following command:
+
+```
+whoami /groups
+```
+
+---
+
+## Key Concepts Learned
+
+### Organizational Units (OU)
+
+Used for:
+
+- Organizing users and computers
+- Applying Group Policy Objects (GPOs)
+- Delegating administration
+
+### Security Groups
+
+Used for:
+
+- Granting permissions
+- Shared Folder Access
+- Printer Access
+- Software Deployment
+- Local Administrator Rights
+- Drive Mapping
+
+---
+
+## Enterprise Best Practice
+
+Microsoft recommends assigning permissions to Security Groups instead of individual users.
+
+Benefits include:
+
+- Easier administration
+- Better security
+- Scalability
+- Simplified onboarding and offboarding
+
+---
+
+## Skills Demonstrated
+
+- Active Directory Administration
+- User Management
+- Security Group Management
+- Group Membership Verification
+- Principle of Least Privilege
+- Enterprise Permission Management
+
+---
+
+## Commands Used
+
+```cmd
+whoami /groups
+```
+
+```cmd
+net user username /domain
+```
+
+---
+
+## Key Takeaway
+
+Organizational Units help organize Active Directory objects and apply Group Policies, while Security Groups are used to assign permissions to resources. Following Microsoft's recommended approach of assigning permissions to groups rather than individual users improves security, scalability, and administrative efficiency.
