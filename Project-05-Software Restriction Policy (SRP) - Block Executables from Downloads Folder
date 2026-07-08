@@ -1,0 +1,51 @@
+
+
+Objective
+
+Configure a Group Policy Object (GPO) to prevent users from running executable (.exe) files from their Downloads folder using Software Restriction Policies (SRP).
+
+Lab Environment
+	•	Windows Server 2022 (Domain Controller)
+	•	Windows 10 Domain-Joined Client
+	•	Active Directory Domain Services (AD DS)
+	•	Group Policy Management (GPMC)
+
+Steps Performed
+	•	Created a new GPO named SOFTWARE RESTRICTION POLICY.
+	•	Linked the GPO to the appropriate Organizational Unit (OU).
+	•	Created Software Restriction Policies under:
+	•	Computer Configuration → Policies → Windows Settings → Security Settings → Software Restriction Policies
+	•	Configured Enforcement:
+	•	Apply to all software files
+	•	Apply to all users except local administrators
+	•	Ignore certificate rules
+	•	Created a Path Rule:
+	•	Path: %USERPROFILE%\Downloads\*.exe
+	•	Security Level: Disallowed
+	•	Updated Group Policy using:
+
+CMD:gpupdate /force
+
+•	Verified that executable files placed inside the Downloads folder could no longer run.
+
+Troubleshooting
+
+During testing, the policy did not work because the path rule contained a typo Incorrect: %USERPROFILE%\Downoads\*.exe
+I corrected it to %USERPROFILE%\Downloads\*.exe
+After correcting the path and running gpupdate /force, the restriction worked successfully.
+
+Key Learning Points
+	•	Software Restriction Policies use exact path matching.
+	•	Even a small typo can prevent a policy from working.
+	•	Computer Configuration policies apply to all users who log on to the affected computer.
+	•	Changes to Group Policy require a policy refresh or restart before taking effect.
+	•	Disabling a GPO prevents Windows from processing any settings contained within it.
+
+Skills Demonstrated
+	•	Active Directory
+	•	Group Policy Management
+	•	Software Restriction Policies (SRP)
+	•	Windows Security
+	•	Windows Server 2022 Administration
+	•	IT Support Troubleshooting
+	•	Active Directory Troubleshooting
