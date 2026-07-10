@@ -1,0 +1,135 @@
+# Active Directory Lab: Drive Mapping with Group Policy
+
+## Objective
+
+The objective of this lab was to configure a network shared folder for the HR department and automatically map it as the H: drive for HR users using Group Policy Preferences.
+
+---
+
+## Lab Environment
+
+- Windows Server 2022 (Domain Controller)
+- Windows 10 Client
+- Active Directory Domain Services
+- Group Policy Management
+- Shared Folder (hr-shared)
+
+---
+
+## Tasks Performed
+
+### 1. Created a Security Group
+- Created the **HR-SHARED** security group.
+- Added HRuser1, HRuser2, and HRuser3 as members.
+
+### 2. Created and Shared a Folder
+- Created the **hr-shared** folder on the Windows Server.
+- Configured Share Permissions.
+- Configured NTFS Permissions.
+- Verified that only authorized HR users could access the folder.
+
+### 3. Created a Drive Mapping GPO
+Created a new Group Policy Object named:
+
+**HR Drive Mapping**
+
+Configured:
+
+User Configuration
+
+Preferences
+
+Windows Settings
+
+Drive Maps
+
+Settings:
+
+- Action: Update
+- Drive Letter: H:
+- Label: HR SHARED DRIVE
+- Location:
+```
+\\WIN-200J89MC3AS\hr-shared
+```
+
+Linked the GPO to the HR Organizational Unit (OU).
+
+---
+
+## Testing
+
+Logged into the Windows 10 client as **HRuser1**.
+
+Verified:
+
+- Group Policy successfully applied.
+- The H: drive automatically appeared in This PC.
+- Users could access the shared HR folder.
+
+---
+
+## Troubleshooting
+
+During testing, the mapped drive did not appear.
+
+Troubleshooting steps included:
+
+- Verified GPO linkage.
+- Ran `gpupdate /force`.
+- Used `gpresult /r`.
+- Verified security group membership.
+- Confirmed share permissions.
+- Confirmed NTFS permissions.
+- Tested network connectivity.
+- Successfully mapped the drive manually using:
+
+```
+net use H: \\WIN-200J89MC3AS\hr-shared
+```
+
+### Root Cause
+
+The UNC path inside the Drive Mapping GPO was incorrectly configured.
+
+Incorrect:
+
+```
+WIN-200J89MC3AS
+```
+
+Correct:
+
+```
+\\WIN-200J89MC3AS\hr-shared
+```
+
+After correcting the UNC path, the drive mapped successfully.
+
+---
+
+## Skills Demonstrated
+
+- Active Directory
+- Organizational Units (OU)
+- Security Groups
+- Shared Folders
+- Share Permissions
+- NTFS Permissions
+- Group Policy Preferences
+- Drive Mapping
+- Windows Networking
+- UNC Paths
+- Group Policy Troubleshooting
+- Command Prompt
+- gpupdate
+- gpresult
+- net use
+
+---
+
+## Outcome
+
+Successfully deployed an automatic H: drive mapping for HR users using Group Policy and resolved a real-world configuration issue involving an incorrect UNC path.
+
+# screentshots
