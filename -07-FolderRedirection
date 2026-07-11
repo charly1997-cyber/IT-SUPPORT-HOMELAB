@@ -1,0 +1,158 @@
+# Active Directory Lab: Folder Redirection Using Group Policy
+
+## Objective
+
+The objective of this lab was to configure Folder Redirection using Group Policy so that users' Documents folders are automatically redirected from the local computer to a centralized file server. This ensures user data is protected, backed up centrally, and accessible from any domain-joined computer.
+
+---
+
+## Lab Environment
+
+- Windows Server 2022 (Domain Controller)
+- Windows 10 Client
+- Active Directory Domain Services (AD DS)
+- Group Policy Management (GPMC)
+
+---
+
+## Tasks Performed
+
+### 1. Created a Shared Folder
+
+- Created a shared folder named **RedirectedFolders** on the Windows Server.
+- Verified that the folder was accessible from the Windows 10 client using its UNC path.
+
+---
+
+### 2. Created a Folder Redirection GPO
+
+Created a new Group Policy Object named:
+
+**HR Folder Redirection**
+
+Linked the GPO to the **HR Organizational Unit (OU)**.
+
+---
+
+### 3. Configured Folder Redirection
+
+Configured:
+
+User Configuration
+
+Policies
+
+Windows Settings
+
+Folder Redirection
+
+Documents
+
+Settings:
+
+- Setting: Basic - Redirect everyone's folder to the same location
+- Target Folder Location: Create a folder for each user under the root path
+- Root Path:
+
+```
+\\WIN-200J89MC3AS\RedirectedFolders
+```
+
+Settings:
+
+- Grant the user exclusive rights to Documents
+- Move the contents of Documents to the new location
+- Leave the folder in the new location when the policy is removed
+
+---
+
+### 4. Applied the Policy
+
+- Ran `gpupdate /force`
+- Logged off and logged back in as **HRuser1**
+- Confirmed that the Documents folder was successfully redirected.
+
+---
+
+## Testing
+
+Verified that the Documents folder location changed from:
+
+```
+C:\Users\HRuser1\Documents
+```
+
+to:
+
+```
+\\WIN-200J89MC3AS\RedirectedFolders\HRuser1\Documents
+```
+
+Created test files and confirmed they were stored on the server instead of the local computer.
+
+---
+
+## Security Verification
+
+Logged in as **Salesuser1** and tested access to **HRuser1's** redirected folder.
+
+Results:
+
+- Salesuser1 could see the HRuser1 folder.
+- Salesuser1 could not open HRuser1's Documents folder due to NTFS permissions created automatically by the **Grant the user exclusive rights** setting.
+
+---
+
+## Key Concepts Learned
+
+### Drive Mapping
+
+Provides a shared network drive that multiple users within a department can access.
+
+Example:
+
+```
+H:
+```
+
+Used for:
+
+- Shared documents
+- Company templates
+- Policies
+- Department files
+
+---
+
+### Folder Redirection
+
+Redirects a user's personal folders (such as Documents) from the local computer to a file server.
+
+Benefits:
+
+- Centralized storage
+- Easier backups
+- User files follow them to any domain-joined computer
+- Reduced risk of data loss
+
+---
+
+## Skills Demonstrated
+
+- Active Directory
+- Organizational Units (OU)
+- Group Policy Management
+- Folder Redirection
+- Windows File Sharing
+- UNC Paths
+- User Data Management
+- Group Policy Processing
+- Windows Troubleshooting
+- Windows File Permissions
+- IT Support Administration
+
+---
+
+## Outcome
+
+Successfully configured Folder Redirection for HR users using Group Policy. Verified that user documents were stored on the server, remained available after logon, and were protected from unauthorized access by other users.
