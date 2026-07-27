@@ -1,0 +1,141 @@
+Deploy software automatically to domain-joined Windows client computers using Group Policy Software Installation.
+
+⸻
+
+Lab Environment
+	•	Windows Server 2022 (Domain Controller)
+	•	Windows 10 Client
+	•	Active Directory Domain Services
+	•	Group Policy Management
+	•	VMware Workstation
+	•	Shared Folder (\ServerName\Software)
+
+⸻
+
+Software Used
+	•	7-Zip (MSI)
+
+⸻
+
+Steps Performed
+
+1. Prepared the Software Repository
+
+	•	Created C:\Software on the domain controller.
+	•	Shared the folder with appropriate permissions.
+	•	Copied the 7-Zip MSI installer into the shared folder.
+
+⸻
+
+2. Created a New Group Policy Object
+
+Created a new GPO named:
+
+Deploy 7-Zip
+
+⸻
+
+3. Configured Software Installation
+
+Navigated to:
+
+Computer Configuration
+
+→ Policies
+
+→ Software Settings
+
+→ Software Installation
+
+Selected:
+
+New → Package
+
+Used the UNC path instead of the local C: drive.
+
+Example:
+
+\SERVERNAME\Software\7z.msi
+
+Deployment Method:
+
+Assigned
+
+4. Linked the GPO
+
+Initially linked the GPO to the HR OU.
+
+The deployment did not occur because the target computer was located inside the Workstations OU.
+
+Moved the GPO link to the Workstations OU.
+
+5. Updated Group Policy
+
+Executed:
+
+gpupdate /force
+
+Restarted the Windows client.
+
+6. Verified Deployment
+
+After rebooting:
+	•	7-Zip installed automatically.
+	•	The software appeared under Programs and Features.
+	•	Users could launch the application without manually installing it.
+
+Troubleshooting
+
+Issue 1
+
+Software did not install.
+
+Cause:
+
+The GPO was linked to the wrong Organizational Unit.
+
+Resolution:
+
+Linked the GPO to the Workstations OU where the computer account resided.
+
+⸻
+
+Issue 2
+
+Attempted to deploy Notepad++ but accidentally downloaded an Internet Shortcut (.url) instead of the MSI installer.
+
+Observed:
+	•	File Type: Internet Shortcut (.url)
+	•	File Size: 225 bytes
+
+Expected:
+	•	Windows Installer Package (.msi)
+	•	File size of several megabytes
+
+Resolution:
+
+Verified the download source and learned to distinguish between a web shortcut and a genuine MSI installer.
+
+Skills Demonstrated
+	•	Active Directory
+	•	Group Policy Management
+	•	Software Deployment using GPO
+	•	UNC Paths
+	•	Shared Folder Configuration
+	•	Windows Server Administration
+	•	IT Support Troubleshooting
+	•	Software Distribution
+	•	Deployment Verification
+
+Key Learning Points
+	•	Software Installation GPO requires MSI packages.
+	•	Always use a UNC path rather than a local drive path.
+	•	Computer Configuration policies apply to computers, not users.
+	•	Link the GPO to the OU containing the target computer object.
+	•	Verify downloaded software before deployment by checking its file type and source.
+
+⸻
+
+Outcome
+
+Successfully deployed software automatically to a domain-joined workstation using Group Policy and resolved deployment issues caused by incorrect GPO linking and downloading an invalid installer.
