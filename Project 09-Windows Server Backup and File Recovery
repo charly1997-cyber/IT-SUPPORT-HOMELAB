@@ -1,0 +1,105 @@
+Project Overview
+
+In this lab, I learned how to use Windows Server Backup to protect important business files and recover them after accidental deletion.
+
+This project demonstrates a common real-world IT Support task where an administrator performs backups and restores lost files when users accidentally delete important documents.
+
+Lab Environment
+	•	Windows Server 2022
+	•	VMware Workstation
+	•	Windows Server Backup Feature
+	•	Secondary virtual disk (E:) used as the backup destination
+
+Objectives
+	•	Install Windows Server Backup
+	•	Configure a backup destination
+	•	Create a custom backup
+	•	Backup a business folder
+	•	Simulate accidental file deletion
+	•	Restore deleted files from backup
+
+Steps Performed
+
+1. Installed Windows Server Backup
+
+Installed the Windows Server Backup feature using Add Roles and Features in Server Manager.
+
+2. Created Test Data
+
+Created a folder named:
+
+C:\LabBackup
+
+Inside the folder I created sample business files:
+	•	employees.txt
+	•	Payroll.txt
+	•	Policies.txt
+
+Configured Backup Storage
+	•	Added a secondary virtual disk
+	•	Initialized and formatted it
+	•	Assigned drive letter E:
+	•	Used it as the backup destination
+
+4. Performed a Custom Backup
+
+Configured a Backup Once job.
+
+Selected:
+	•	Custom Backup
+	•	Added only C:\LabBackup
+	•	Selected E: as the backup destination
+
+The backup completed successfully.
+
+Simulated Data Loss
+
+Deleted:
+	•	employees.txt
+
+This simulated a user accidentally deleting an important business file.
+
+6. Restored the Deleted File
+
+Opened Windows Server Backup
+
+Selected:
+	•	Recover
+	•	This Server
+	•	Files and Folders
+	•	Original Location
+
+Recovered the deleted file successfully.
+
+Windows Server Backup restored the deleted file while preserving the existing files.
+
+Results
+
+Successfully demonstrated:
+	•	Windows Server Backup installation
+	•	Custom backup creation
+	•	Backup destination configuration
+	•	File recovery
+	•	Disaster recovery fundamentals
+	•	Windows Server administration
+
+Skills Demonstrated
+	•	Windows Server 2022
+	•	Windows Server Backup
+	•	File Recovery
+	•	Backup Administration
+	•	Disaster Recovery
+	•	IT Support
+	•	Windows System Administration
+
+⸻
+
+Key Lessons Learned
+	•	Backups are different from the Recycle Bin.
+	•	Deleted files can still be recovered even after the Recycle Bin is emptied, provided a backup exists.
+	•	Keeping backups on a separate disk protects data if the primary drive fails.
+	•	Regular backups are essential for business continuity.
+
+Outcome
+
+Successfully backed up and restored business files using Windows Server Backup, demonstrating practical backup and disaster recovery skills used by IT Support and System Administrators.
