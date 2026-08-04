@@ -1,0 +1,92 @@
+# Printer Deployment in Active Directory
+
+## Objective
+
+Deploy a shared network printer manually and automatically using Group Policy in a Windows Server 2022 Active Directory environment.
+
+---
+
+## Lab Environment
+
+- Windows Server 2022 (Domain Controller)
+- Windows 10 Client
+- VMware Workstation Player
+- Active Directory Domain Services
+- Print and Document Services
+- Group Policy Management
+
+---
+
+## Skills Practiced
+
+- Installing the Print Server role
+- Creating a shared printer
+- Sharing printers across the network
+- Deploying printers with Group Policy
+- Manual printer installation
+- Group Policy update
+- Client verification
+- Basic printer administration
+
+---
+
+## Printer Information
+
+Printer Name:
+HR Office Printer
+
+Share Name:
+HR-Printer
+
+Driver:
+Generic / Text Only
+
+---
+
+## Automatic Deployment (GPO)
+
+The printer was deployed using:
+
+User Configuration
+
+Policies
+
+Windows Settings
+
+Deployed Printers
+
+The printer automatically appeared on the Windows 10 client after:
+
+gpupdate /force
+
+and user logon.
+
+---
+
+## Manual Installation
+
+The printer was also installed manually by browsing:
+
+\\charlycyber.local
+
+and double-clicking the shared printer.
+
+This method is useful when installing a printer for a single user.
+
+---
+
+## Result
+
+Successfully deployed a network printer to a domain user using both:
+
+- Manual Installation
+- Group Policy Deployment
+
+---
+
+## Lessons Learned
+
+- Difference between manual deployment and automated deployment
+- How Print Server works
+- How Group Policy distributes printers
+- Why organizations prefer GPO for large environments
