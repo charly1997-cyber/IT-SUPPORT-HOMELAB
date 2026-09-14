@@ -1,0 +1,251 @@
+# Microsoft 365 MFA & Authentication Administration
+
+## Overview
+
+This lab focused on understanding and administering Multi-Factor Authentication (MFA) in Microsoft Entra ID.
+
+The practical exercise simulated a real helpdesk incident where a user lost access to their Microsoft Authenticator device.
+
+---
+
+## Objectives
+
+- Understand Multi-Factor Authentication (MFA)
+- Understand authentication vs authorization
+- Register Microsoft Authenticator
+- Understand Temporary Access Pass (TAP)
+- Create a TAP as an administrator
+- Remove a user's lost authentication method
+- Recover a user's MFA access
+- Register a replacement authentication device
+- Verify authentication methods in Microsoft Entra ID
+- Investigate authentication changes using Audit Logs
+
+---
+
+## Lab Environment
+
+- Microsoft 365 Business Standard trial
+- Microsoft Entra ID
+- Test user: Bob John
+- Microsoft Authenticator
+- Temporary Access Pass (TAP)
+- Microsoft Entra Admin Center
+- Microsoft 365 Admin Center
+
+---
+
+## What is MFA?
+
+Multi-Factor Authentication requires a user to provide more than one type of authentication factor.
+
+Examples include:
+
+- Something you know — password
+- Something you have — phone/security key
+- Something you are — fingerprint/biometric
+
+In this lab, Microsoft Authenticator was used as the second authentication factor.
+
+---
+
+## Authentication vs Authorization
+
+### Authentication
+
+Authentication answers:
+
+> "Who are you?"
+
+Example:
+
+Bob enters his username and password and completes MFA.
+
+### Authorization
+
+Authorization answers:
+
+> "What are you allowed to access?"
+
+A user can successfully authenticate but still be denied access to a resource because they do not have the required permissions.
+
+---
+
+# Practical Exercise 1 — Register Microsoft Authenticator
+
+A test user, Bob John, was used to experience MFA from the end-user perspective.
+
+### Process
+
+1. Sign in as Bob.
+2. Microsoft required additional authentication.
+3. Microsoft displayed the Authenticator setup process.
+4. Microsoft Authenticator was installed on the mobile device.
+5. Bob's work/school account was added to Authenticator.
+6. The QR-code registration process was completed.
+7. Microsoft sent an approval request.
+8. The number-matching challenge was completed.
+9. Bob successfully registered Microsoft Authenticator.
+
+### Verification
+
+Microsoft Entra showed:
+
+- Microsoft Authenticator
+- Device: iPhone XS
+- Authentication method: Push MFA
+
+This confirmed that the Authenticator registration was successful.
+
+---
+
+# Practical Exercise 2 — Simulate a Lost Phone
+
+The lab simulated the following helpdesk incident:
+
+> "I lost my phone and I can no longer approve Microsoft Authenticator sign-in requests."
+
+### Administrator actions
+
+1. Opened Bob John in Microsoft Entra.
+2. Opened Authentication methods.
+3. Identified the existing Microsoft Authenticator method.
+4. Removed the lost device's authentication method.
+5. Confirmed that Bob no longer had a usable Authenticator method.
+6. Created a Temporary Access Pass.
+
+---
+
+# Temporary Access Pass (TAP)
+
+A Temporary Access Pass is a temporary authentication credential that can be used to help a user register authentication methods or recover access when their normal strong authentication method is unavailable.
+
+TAP settings used in this lab:
+
+- Duration: 1 hour
+- One-time use: Yes
+- Delayed start: No
+
+The TAP was enabled by the authentication policy.
+
+---
+
+# TAP Troubleshooting
+
+During the lab, the TAP appeared to have an incorrect/old expiration time.
+
+Investigation showed that the Windows workstation was configured with:
+
+- Incorrect timezone: Pacific Time (UTC-08:00)
+- Automatic time synchronization: Off
+- Last successful synchronization: January 5, 2026
+
+The workstation was corrected to:
+
+- Timezone: West Central Africa (UTC+01:00)
+- Automatic time synchronization: On
+- Time synchronized with `time.windows.com`
+
+This demonstrated an important troubleshooting principle:
+
+> Always verify the endpoint's date, time and timezone when investigating authentication or timestamp-related problems.
+
+---
+
+# Audit Log Investigation
+
+Microsoft Entra Audit Logs were used to investigate TAP creation.
+
+The audit event showed:
+
+**Activity:** Admin registered security info
+
+**Status:** Success
+
+**Status reason:**
+Admin registered temporary access pass method for user.
+
+This demonstrated how an administrator/SOC analyst can use audit logs to determine:
+
+- What happened
+- When it happened
+- Who initiated the action
+- Whether the action succeeded
+
+---
+
+# Lessons Learned
+
+### 1. MFA is an authentication control
+
+MFA helps verify that the person signing in is actually the legitimate user.
+
+### 2. Losing a phone does not necessarily mean resetting the password
+
+If the user's password is still valid, the problem may be the lost authentication method.
+
+The administrator should verify the user's identity before changing authentication methods.
+
+### 3. TAP is a recovery mechanism
+
+A TAP can temporarily bridge the gap between:
+
+Old authentication method
+→ Lost/unavailable
+
+and:
+
+New authentication method
+→ Microsoft Authenticator registered
+
+### 4. Authentication and authorization are different
+
+A successful MFA challenge does not automatically grant access to every resource.
+
+### 5. Audit Logs are valuable for investigation
+
+Authentication-method changes should be investigated through Entra Audit Logs when troubleshooting or investigating suspicious activity.
+
+### 6. Time matters
+
+Incorrect endpoint time/timezone configuration can create confusing timestamps during troubleshooting.
+
+---
+
+# Real-World Helpdesk Scenario
+
+**Incident:**
+
+User reports:
+
+> "I lost my phone and can't approve my Microsoft Authenticator request."
+
+### Technician workflow
+
+1. Verify the user's identity.
+2. Confirm the authentication problem.
+3. Check the user's authentication methods.
+4. Remove the lost device if appropriate.
+5. Issue a Temporary Access Pass.
+6. Provide the TAP through an approved secure method.
+7. User registers a replacement authentication method.
+8. Verify the new method.
+9. Test sign-in.
+10. Document the incident.
+11. Close the ticket after user confirmation.
+
+---
+
+## Security Notes
+
+Never place the following in ordinary ticket notes:
+
+- Passwords
+- Temporary Access Pass codes
+- MFA codes
+- Recovery codes
+- QR-code secrets
+- Private keys
+- API secrets
+
+Record the administrative action, not the secret itself.
