@@ -1,0 +1,68 @@
+I created a shared mailbox:
+IT support
+
+Example address:
+IT-support@charlycyber.onmicrosoft.com
+The mailbox was then assigned users.
+
+Full Access
+
+Sarah and Bob were given:
+
+Read and manage (Full Access)
+
+Full Access allows a user to open and manage the shared mailbox.
+
+This was demonstrated through Outlook.
+
+Sarah was able to open:
+IT support
+→ Inbox
+
+and access messages.
+Send As
+
+I also tested Send As.
+
+Sarah sent an email using:
+From: IT-support@charlycyber.onmicrosoft.com.
+Bob received the message with:Sender: IT support.
+This demonstrated that Sarah could send as the shared mailbox.
+
+Full Access vs Send As
+
+One of the most important lessons from the shared-mailbox practical was that these permissions are different.
+
+Full Access
+
+Allows the user to:
+
+* open the mailbox
+* read messages
+* manage mailbox contents
+
+Send As
+
+Allows the user to:
+
+* send email appearing directly from the shared mailbox
+Therefore: Send As ≠ Full Access.
+
+A user can have:
+
+Send As = Yes
+
+while:
+
+Full Access = No
+
+Victor Kelvin was used to demonstrate this.
+
+Victor had: Send As → Yes
+Full Access → No
+He could send as IT support, but he could not open/manage the shared mailbox.
+
+
+
+
+
