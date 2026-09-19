@@ -1,0 +1,38 @@
+We created a controlled Outlook rule for Sarah.
+Rule:If message is from Bob John
+        ↓
+Move message to:
+Bob test
+
+Bob then sent Sarah a test email.
+
+The message did not remain in Sarah’s Inbox.
+Instead:
+Bob
+ ↓
+Exchange
+ ↓
+Sarah mailbox
+ ↓
+Outlook rule
+ ↓
+Bob test folder
+
+This demonstrated an important troubleshooting principle.
+
+If a user says:
+
+“I never received Bob’s email.”
+
+the message may actually have been delivered successfully and then moved by:
+
+* Inbox rules
+* Sweep
+* Junk filtering
+* Archive
+* Other mailbox organization
+
+Therefore, Message Trace + mailbox investigation should be used together.
+
+
+
