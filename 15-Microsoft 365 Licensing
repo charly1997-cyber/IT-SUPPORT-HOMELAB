@@ -1,0 +1,205 @@
+# Microsoft 365 Licensing Administration
+
+## Overview
+
+This lab focused on Microsoft 365 license management, service plans, license assignment, and troubleshooting missing licenses.
+
+---
+
+## Objectives
+
+- Understand Microsoft 365 licensing
+- Assign licenses to users
+- Remove/review licenses
+- Understand service plans
+- Verify license assignments
+- Troubleshoot users without licenses
+- Understand direct licensing
+- Understand group-based licensing conceptually
+- Validate license assignment through Microsoft Entra ID
+
+---
+
+## Lab Environment
+
+- Microsoft 365 Business Standard
+- Microsoft 365 Admin Center
+- Microsoft Entra Admin Center
+
+---
+
+# Practical Exercise — Assigning a License
+
+Sarah Williams was created without a Microsoft 365 license.
+
+### Initial state
+
+Sarah:
+
+**Licenses: 0**
+
+The Microsoft 365 Business Standard subscription had available licenses.
+
+### Administrative action
+
+1. Opened Microsoft 365 Admin Center.
+2. Navigated to Active users.
+3. Selected Sarah Williams.
+4. Opened Licenses and apps.
+5. Confirmed usage location was Nigeria.
+6. Selected Microsoft 365 Business Standard.
+7. Saved the changes.
+
+### Result
+
+Sarah received:
+
+**Microsoft 365 Business Standard**
+
+The available license count changed accordingly.
+
+---
+
+# Entra ID Verification
+
+The assignment was independently verified in Microsoft Entra ID.
+
+Sarah's license showed:
+
+- Product: Microsoft 365 Business Standard
+- State: Active
+- Assignment path: Direct
+
+This demonstrated the importance of validating an administrative change instead of assuming it succeeded.
+
+---
+
+# License Troubleshooting Scenario
+
+A temporary user called:
+
+**Test Licensing**
+
+was intentionally created without a license.
+
+### User state
+
+- Account: Active
+- Usage location: Nigeria
+- Licenses: 0
+
+The simulated issue was:
+
+> "User cannot access licensed Microsoft 365 services."
+
+---
+
+## Investigation
+
+The administrator checked:
+
+1. User account status
+2. Usage location
+3. License assignments
+4. Available licenses
+5. Microsoft 365 service plans
+
+### Root cause
+
+The user had **no Microsoft 365 product license assigned**.
+
+---
+
+## Remediation
+
+Microsoft 365 Business Standard was assigned to Test Licensing.
+
+The license count changed from:
+
+**0 → 1**
+
+---
+
+## Validation
+
+The administrator verified that the user now had Microsoft 365 Business Standard.
+
+Service plans included services such as:
+
+- Exchange Online
+- Microsoft Teams
+- Microsoft 365 Apps for Business
+- Office for the Web
+- Other Business Standard services
+
+Some organization-level services were displayed as unavailable for individual assignment.
+
+This demonstrated that not every service shown in the licensing interface is individually assignable to a user.
+
+---
+
+# Direct Licensing vs Group-Based Licensing
+
+### Direct licensing
+
+Administrator:
+
+User → License
+
+Example:
+
+Sarah → Business Standard
+
+### Group-based licensing
+
+Administrator:
+
+Group → License → Members inherit license
+
+Example:
+
+Sales-Team → Business Standard
+
+Group-based licensing can simplify license management when many users require the same license.
+
+However, group-based licensing requires the appropriate Microsoft Entra licensing, such as Entra ID P1/P2. The Business Standard license used in this lab provides Entra ID Free, so true group-based licensing was not configured in this environment.
+
+---
+
+## Key Lessons Learned
+
+- A user account and a product license are separate things.
+- Creating a user does not automatically mean the user has a Microsoft 365 product license.
+- Usage location is important when assigning licenses.
+- License assignment should be verified after making the change.
+- Service plans determine the services enabled within a product license.
+- Organization-level services may not be individually configurable.
+- Direct licensing works well for small/simple environments.
+- Group-based licensing is more scalable but requires appropriate licensing.
+
+---
+
+## Troubleshooting Method
+
+When a user reports that a Microsoft 365 service is unavailable:
+
+1. Confirm the user account exists.
+2. Check account status.
+3. Check usage location.
+4. Check assigned licenses.
+5. Check available licenses.
+6. Check relevant service plans.
+7. Assign the appropriate license if authorized.
+8. Validate the assignment.
+9. Test the affected service.
+10. Document the resolution.
+
+---
+
+## Real-World Application
+
+Microsoft 365 administrators frequently troubleshoot access issues caused by incorrect, missing, or incomplete license assignments.
+
+The key lesson is:
+
+> Don't immediately assume the application is broken. Verify the user's account, license, and enabled service plans first.
