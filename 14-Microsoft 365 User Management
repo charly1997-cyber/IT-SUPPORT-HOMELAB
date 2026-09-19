@@ -1,0 +1,155 @@
+# Microsoft 365 User Management
+
+## Overview
+
+This lab focused on managing user accounts in Microsoft 365 and Microsoft Entra ID.
+
+The practical exercises simulated common IT administration tasks such as employee onboarding, assigning user information, managing accounts, and handling Joiner/Mover/Leaver scenarios.
+
+---
+
+## Objectives
+
+- Create Microsoft 365 users
+- Understand User Principal Names (UPN)
+- Configure user properties
+- Set departments and job titles
+- Assign managers
+- Manage user accounts
+- Understand Joiner/Mover/Leaver processes
+- Verify users in Microsoft Entra ID
+- Understand authentication and account access
+
+---
+
+## Lab Environment
+
+- Microsoft 365 Business Standard
+- Microsoft Entra ID
+- Microsoft 365 Admin Center
+- Microsoft Entra Admin Center
+
+Test users created:
+
+- Sarah Williams
+- David Okoro
+
+---
+
+# Practical Exercise — Employee Onboarding
+
+A simulated HR request was created for:
+
+**Employee:** Sarah Williams  
+**Employee ID:** CT-1047  
+**Department:** Sales  
+**Job Title:** Sales Executive  
+**Employment:** Full-time  
+**Manager:** David Okoro
+
+### Administrator workflow
+
+1. Verified the information supplied by HR.
+2. Created Sarah Williams in Microsoft Entra ID.
+3. Configured her user profile.
+4. Set her department and job information.
+5. Created/selected the appropriate group.
+6. Assigned the appropriate Microsoft 365 license.
+7. Configured her manager.
+8. Verified the account in Microsoft 365 Admin Center and Microsoft Entra ID.
+
+---
+
+# Mover Scenario
+
+Sarah was originally assigned to the Sales department.
+
+A simulated internal transfer was then performed.
+
+### Changes made
+
+**Before:**
+
+Department: Sales  
+Group: Sales-Team
+
+**After:**
+
+Department: HR  
+Group: HR-GROUP
+
+### Administrative actions
+
+- Removed Sarah from Sales-Team.
+- Added Sarah to HR-GROUP.
+- Updated her organizational information.
+- Verified that she no longer had the previous Sales group membership.
+
+This simulated a real employee "Mover" event.
+
+---
+
+# Manager Assignment
+
+David Okoro was created as Sarah's manager.
+
+This demonstrated how administrators can maintain organizational reporting relationships in Microsoft 365/Entra ID.
+
+---
+
+# Joiner/Mover/Leaver
+
+### Joiner
+
+A new employee joins the organization.
+
+Typical IT actions:
+
+HR request → Create account → Groups → License → Authentication → Applications → Validation
+
+### Mover
+
+An employee changes department, role, or responsibilities.
+
+Typical IT actions:
+
+Update user information → Review groups → Review licenses → Review access → Remove old access → Add new access
+
+### Leaver
+
+An employee leaves the organization.
+
+Typical IT actions:
+
+Disable account → Revoke access/sessions → Review licenses → Preserve required data → Remove unnecessary access
+
+---
+
+## Key Lessons Learned
+
+- HR provides authoritative employee information.
+- IT determines the technical provisioning procedure.
+- User accounts should receive only the access required for their role.
+- Group membership can control access at scale.
+- Employee transfers require both adding new access and removing old access.
+- Manager information is useful for organizational administration.
+- Joiner/Mover/Leaver processes are fundamental to identity administration.
+
+---
+
+## Verification
+
+User accounts were verified through:
+
+- Microsoft 365 Admin Center
+- Microsoft Entra Admin Center
+- User profile
+- Groups
+- Licenses
+- Manager information
+
+---
+
+## Real-World Application
+
+This exercise represents a simplified version of how an IT administrator handles employee lifecycle management in a real organization.
