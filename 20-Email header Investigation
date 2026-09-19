@@ -1,0 +1,95 @@
+We then investigated the technical headers of messages.
+
+An email header contains technical information about how the message travelled through mail systems.
+
+Important headers we encountered included:
+Authentication-Results
+Received
+X-Forefront-Antispam-Report
+X-Microsoft-Antispam
+X-MS-Exchange-Organization-SCL
+
+Rather than trying to memorize every header, I learned to identify the ones relevant to an investigation.
+SPF
+
+SPF = Sender Policy Framework
+
+Simple explanation:
+
+SPF asks:
+
+“Is this mail server authorized to send email for this domain?”
+Our external Gmail test produced: SPF = PASS.
+This meant the sending infrastructure passed Gmail’s SPF authorization check.
+
+DKIM
+
+
+DKIM = DomainKeys Identified Mail
+
+DKIM provides a cryptographic signature associated with the sending domain.
+
+In simple terms: DMARC = PASS
+
+
+
+“Does this email have a valid digital signature from the domain?”
+Our external Gmail test showed:DKIM = PASS
+The signature was successfully verified.
+
+DMARC:
+
+DMARC = Domain-based Message Authentication, Reporting & Conformance
+
+DMARC uses authentication results and domain alignment to determine whether a message satisfies the sending domain’s authentication policy.
+Our test showed:DMARC = PASS
+
+External Email Authentication Investigation
+
+We performed a real external-to-Microsoft-365 investigation.
+The flow was:
+External Gmail
+       ↓
+Internet
+       ↓
+Microsoft Exchange Online
+       ↓
+Sarah Williams
+
+The message was:Subject:
+External authentication test
+
+Message Trace Result
+
+Message Trace showed:
+Received
+Processed
+Delivered
+
+and:
+
+The message was delivered to the recipient’s Inbox folder.
+
+Header Result
+
+The message headers showed:
+SPF   = PASS
+DKIM  = PASS
+DMARC = PASS
+
+Therefore we had two independent pieces of evidence:
+
+Mail-flow evidence:
+Message Trace
+     ↓
+Delivered
+
+Authentication evidence:
+SPF   ✅
+DKIM  ✅
+DMARC ✅
+
+This is much stronger than simply saying:
+
+“The email was sent.”
+
