@@ -1,0 +1,54 @@
+2. Exchange Online Administration
+
+Objective
+
+Learn how an IT administrator manages and troubleshoots email using Exchange Online.
+
+Environment
+
+Microsoft 365 Business Standard
+
+Test users:
+
+* Sarah Williams
+* Bob John
+* Victor Kelvin
+
+⸻
+
+Message Trace
+
+Message Trace was used to investigate email delivery.
+Example:
+Sarah Williams
+      ↓
+Bob John
+
+I used:
+Exchange Admin Center → Mail flow → Message trace
+
+Message Trace showed:
+Received
+   ↓
+Processed
+   ↓
+Delivered
+
+The message details confirmed delivery to the recipient’s mailbox.
+
+Why Message Trace Matters
+
+If a user reports:
+
+“I sent an email but the recipient didn’t receive it.”
+
+an administrator shouldn’t immediately assume the message was lost.
+
+Message Trace can help determine whether Exchange:
+
+* received the message
+* processed it
+* delivered it
+* encountered a failure
+
+This provides evidence before troubleshooting further.
