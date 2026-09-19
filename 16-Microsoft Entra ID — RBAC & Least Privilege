@@ -1,0 +1,101 @@
+Objective
+
+Learn how Microsoft Entra ID uses Role-Based Access Control (RBAC) to give administrators only the permissions required for their responsibilities.
+
+Environment
+
+* Microsoft 365 Business Standard trial
+* Microsoft Entra ID
+* Test users:
+    * Test Licensing
+    * Bob John
+    * Sarah Williams
+* Test role:
+    * Helpdesk Administrator
+
+Practical
+
+I created a dedicated Test Licensing account to simulate a helpdesk technician rather than using the global administrator account for every task.
+
+I assigned:
+
+Helpdesk Administrator
+
+to the Test Licensing account.
+The role appeared under:
+Entra ID
+→ Users
+→ Test Licensing
+→ Assigned roles
+→ Directory roles
+
+The assignment was:
+Role: Helpdesk Administrator
+Assignment: Direct
+Role type: Built-in
+Resource: Directory
+
+Permission Testing
+
+I signed into Microsoft Entra as the Test Licensing technician account and tested operations against Bob John.
+
+Password Reset
+
+The technician could access:
+
+Bob John → Reset password
+
+This demonstrated that the Helpdesk Administrator role can perform password-reset tasks for appropriate non-administrator users.
+
+I did not complete the reset because the test incident was related to MFA rather than a forgotten password.
+
+Revoke Sessions
+
+The technician was also able to use:
+
+Bob John → Revoke sessions
+
+The operation successfully revoked Bob’s active sign-in sessions.
+
+This demonstrated a useful security response for situations such as a suspected compromised or lost-device scenario.
+
+Authentication Methods
+
+When the technician opened:
+
+Bob John → Authentication methods
+
+the portal displayed:
+
+“You do not have access to this data.”
+
+This was an important practical discovery.
+
+The technician’s role did not provide the required visibility for managing Bob’s authentication-method information in this tenant.
+
+Key Lesson
+
+Different administrative tasks require different permissions.
+For example:
+Password reset
+       ↓
+Helpdesk Administrator.
+
+while authentication-method administration may require a more specific authentication-management role.
+
+Least Privilege Principle
+
+Instead of giving every IT employee Global Administrator access:
+Global Administrator
+        ↓
+Everything
+
+we aim for:
+Helpdesk Technician
+        ↓
+Only the permissions required.
+This reduces unnecessary administrative access and limits the potential impact of account compromise.
+
+
+
+
