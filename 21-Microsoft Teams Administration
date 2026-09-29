@@ -1,0 +1,35 @@
+Practical Exercises Completed
+
+* Created and managed Teams channels.
+* Created a Standard channel for HR activities.
+* Created a Private channel for HR Management.
+* Added specific users to private channels.
+* Created a Shared channel for Employee Onboarding.
+* Managed Team membership.
+* Promoted a user from Member → Owner using Teams Admin Center.
+* Tested the difference between Team members and owners.
+* Configured a Teams Channel Policy.
+* Restricted private and shared channel creation for a test user.
+* Created a Teams Meeting Policy.
+* Disabled meeting recording for a test user.
+* Tested the policy from the end-user perspective.
+* Configured a meeting footer for organizational branding.
+* Verified the footer through an actual Teams meeting invitation.
+* Managed Teams applications.
+* Tested application availability for specific users.
+* Created a Teams Setup Policy.
+* Configured which applications appear in the Teams navigation bar.
+* Tested policies using a dedicated test account.
+
+Key Skills Practiced
+
+* Teams administration
+* Channel management
+* Team membership and ownership
+* Private vs Standard vs Shared channels
+* Teams policies
+* Meeting policies
+* Application management
+* User-based policy assignment
+* End-user testing
+* Least-privilege administration
