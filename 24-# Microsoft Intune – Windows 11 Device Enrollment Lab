@@ -1,0 +1,183 @@
+Overview
+
+This lab focused on enrolling and managing a Windows 11 device using Microsoft Intune.
+
+The objective was to understand how an IT administrator can bring a Windows endpoint under cloud-based device management and verify its management status from the Intune admin center.
+
+---
+
+## Lab Environment
+
+### Microsoft 365 / Intune
+
+- Microsoft 365 tenant: CharlyCyber
+
+- Microsoft Intune Plan 1 Trial
+
+- Intune Administrator permissions
+
+- Test user: Intune TestUser
+
+### Windows Endpoint
+
+- Device name: INTUNE-AD-DC
+
+- Operating system: Windows 11
+
+- VMware virtual machine
+
+- VMware model: VMware20,1
+
+- Primary user: Intune TestUser
+
+- Microsoft Entra joined: Yes
+
+- Intune managed: Yes
+
+---
+
+## 1. Created an Intune Test User
+
+Created a dedicated test account:
+
+- Display name: Intune TestUser
+
+- Job title: IT Support Test User
+
+- Department: IT Support
+
+- Employee type: Full-time
+
+- Usage location: Nigeria
+
+The user was assigned a Microsoft Intune Plan 1 trial license.
+
+---
+
+## 2. Windows 11 Microsoft Entra Join
+
+During Windows 11 setup, the device was configured for:
+
+> Set up for work or school
+
+The Intune TestUser account was used to sign in.
+
+The device successfully became Microsoft Entra joined.
+
+Verification was performed using:
+
+```cmd
+
+dsregcmd /status
+
+Important results included:
+AzureAdJoined : YES
+EnterpriseJoined : NO
+DomainJoined : NO
+DeviceAuthStatus : SUCCESS
+TpmProtected : YES
+This confirmed that the Windows 11 VM was successfully joined to Microsoft Entra ID.
+
+3. Installed Microsoft Company Portal
+
+The Microsoft Company Portal application was installed on the Windows 11 VM.
+
+The Intune TestUser signed into Company Portal and completed the device setup process.
+
+Company Portal reported:
+
+You’re all set!
+
+The device was then shown as:
+
+Can access company resources
+
+⸻
+
+4. Verified the Device in Intune
+
+In the Intune admin center:
+
+Devices → All devices
+
+The device appeared as:
+
+* Device: INTUNE-AD-DC
+* Managed by: Intune
+* Primary user: Intune TestUser
+* OS: Windows
+* OS version: 10.0.26300.9457
+* Compliance: Compliant at initial enrollment
+* Ownership: Personal
+
+This confirmed successful Intune enrollment and management.
+
+⸻
+
+5. Understanding Intune Device Management
+
+The device record provided information such as:
+
+* Device name
+* Manufacturer
+* Model
+* Operating system
+* Primary user
+* Last check-in
+* Management method
+* Compliance status
+
+This demonstrated how an administrator can use Intune as a central management console for Windows endpoints.
+
+⸻
+
+Key Lessons
+
+Microsoft Entra Join vs Intune Management
+
+Microsoft Entra joining a device and managing it with Intune are related but separate concepts.
+
+Microsoft Entra Join establishes the device’s cloud identity relationship.
+
+Intune provides device management capabilities such as:
+
+* Configuration policies
+* Security policies
+* Compliance policies
+* Application deployment
+* Device actions
+* Reporting
+
+⸻
+
+Company Portal
+
+Company Portal provides an end-user interface for:
+
+* Device enrollment
+* Accessing company applications
+* Checking device status
+* Synchronizing the device
+* Accessing company resources
+
+⸻
+
+Result
+
+Successfully enrolled a Windows 11 virtual machine into Microsoft Entra ID and Microsoft Intune.
+
+The device was visible and manageable from the Intune admin center.
+
+⸻
+
+Skills Practiced
+
+* Microsoft Intune administration
+* Microsoft Entra ID
+* Windows 11 device enrollment
+* Microsoft Entra Join
+* Company Portal
+* Device management
+* Intune device inventory
+* Device check-in
+* Endpoint management concepts
