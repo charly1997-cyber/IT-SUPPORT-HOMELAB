@@ -1,0 +1,229 @@
+## Overview
+
+This lab focused on using Microsoft Intune Configuration Profiles to centrally configure Windows devices.
+
+The practical demonstrated how an administrator can create a configuration policy, assign it to devices, initiate synchronization, and investigate the resulting deployment status.
+
+---
+
+## Lab Environment
+
+- Microsoft Intune Plan 1 Trial
+
+- Windows 11
+
+- Device: INTUNE-AD-DC
+
+- Primary user: Intune TestUser
+
+- Intune admin center
+
+- Settings Catalog
+
+---
+
+# 1. Created a Configuration Profile
+
+Created the following policy:
+
+**WIN11-Lab-Basic-Configuration**
+
+Description:
+
+> Basic windows 11 configuration for Intune lab test
+
+Platform:
+
+> Windows
+
+The profile was created using the:
+
+**Settings Catalog**
+
+---
+
+# 2. Configured Windows Widgets
+
+The following setting was configured:
+
+```text
+
+Category:
+
+Widgets
+
+Setting:
+
+Allow widgets
+
+Configuration:
+
+Not allowed
+The purpose was to demonstrate how Intune can centrally control Windows features.
+
+3. Assigned the Policy
+
+The policy was assigned to: All devices
+Assignment status: Active.
+No device groups were excluded.
+
+This demonstrated the difference between:
+
+Assignment
+
+Determines which devices are targeted by a policy.
+
+Policy Application
+
+Determines whether the targeted device has actually received and successfully applied the policy.
+
+An active assignment does not automatically mean that the policy has already been applied.
+
+⸻
+
+4. Initiated Device Synchronization
+
+The Intune admin center was used to initiate a manual device synchronization.
+
+The portal returned:
+
+Sync initiated. Sync will occur when the device is notified.
+
+This demonstrated how an administrator can request an immediate device check-in instead of waiting for the normal check-in cycle.
+
+⸻
+
+5. Investigated Synchronization
+
+The Windows device also showed a manual synchronization error: 0x82ac000b
+The Windows Event Viewer Task Scheduler Operational log did not contain useful historical events because the log was disabled.
+
+The device’s Intune enrollment tasks were nevertheless present under: Task Scheduler
+→ Microsoft
+→ Windows
+→ EnterpriseMgmt
+→ <Enrollment GUID>
+
+Important enrollment-related tasks were observed, including:
+
+* Policy Management
+* Provisioning
+* PushLaunch
+* PushRenewal
+* Schedule tasks
+
+The following services were also verified:
+
+* Task Scheduler — Running
+* dmwappushservice — Running
+
+Because the Intune admin center successfully accepted the synchronization request, deeper troubleshooting was intentionally stopped to avoid spending excessive lab time on the portal/device synchronization issue.
+
+Important enrollment-related tasks were observed, including:
+
+* Policy Management
+* Provisioning
+* PushLaunch
+* PushRenewal
+* Schedule tasks
+
+The following services were also verified:
+
+* Task Scheduler — Running
+* dmwappushservice — Running
+
+Because the Intune admin center successfully accepted the synchronization request, deeper troubleshooting was intentionally stopped to avoid spending excessive lab time on the portal/device synchronization issue.
+
+6. Checked Policy Deployment Status
+The configuration profile reported: Succeeded: 0
+Error: 0
+Conflict: 0
+Not applicable: 0
+In Progress: 0
+Therefore, the policy had a valid assignment but no device processing result had yet been reported.
+
+This is an important troubleshooting distinction.
+
+The policy was not confirmed as failed.
+
+Instead:
+The device had not yet reported a policy processing result.
+
+Important Intune Concepts Learned.
+
+Assignment ≠ Application
+A policy can be: Assigned → Active
+
+without yet being: Applied → Succeeded
+Administrators should verify the actual policy deployment status rather than assuming that an active assignment means successful application.
+
+Configuration Profiles
+
+Configuration profiles allow administrators to centrally configure Windows settings.
+
+Examples include:
+
+* Windows features
+* Security settings
+* Device restrictions
+* Network settings
+* Browser settings
+* User experience settings
+* Administrative controls
+
+⸻
+
+Settings Catalog
+
+The Settings Catalog provides a centralized interface for configuring many Windows management settings without manually editing registry values or creating traditional Group Policy objects.
+
+⸻
+Troubleshooting Approach
+
+The practical followed a real IT administration workflow: Create policy
+      ↓
+Configure setting
+      ↓
+Assign policy
+      ↓
+Force synchronization
+      ↓
+Check device
+      ↓
+Check policy status
+      ↓
+Investigate errors
+      ↓
+Document result
+
+The key lesson was:
+
+Always distinguish between policy configuration, policy assignment, device synchronization, and policy application.
+
+⸻
+
+Result
+
+Successfully created and assigned a Windows 11 Intune Settings Catalog configuration profile.
+
+The profile targeted all devices and configured Windows Widgets as: Not allowed
+
+The deployment was submitted for synchronization, but the device had not yet returned a policy-processing result during the lab session.
+
+⸻
+
+Skills Practiced
+
+* Intune Configuration Profiles
+* Settings Catalog
+* Windows endpoint configuration
+* Policy assignment
+* Device synchronization
+* Policy deployment monitoring
+* Intune troubleshooting
+* Configuration policy reporting
+* Differentiating assignment from applicatio
+
+
+
+
