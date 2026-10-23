@@ -1,0 +1,197 @@
+1. Project Overview
+
+This project documents hands-on practice with Microsoft Intune for Windows endpoint management and security configuration.
+
+The objective was to explore how an IT administrator can use Microsoft Intune to apply security requirements to managed Windows devices, configure Windows Defender Firewall settings, and monitor policy deployment and device compliance.
+
+Environment:
+
+* Device: Windows 11 virtual machine.
+* Virtualization platform: VMware Workstation 17 Player.
+* Endpoint management platform: Microsoft Intune.
+* Identity platform: Microsoft Entra ID.
+* Management approach: Cloud-based device and policy management.
+
+2. Practical One: Windows Device Compliance Policy
+
+Objective
+
+Create a compliance policy in Microsoft Intune to establish minimum security requirements for a managed Windows device.
+
+Policy Configuration
+
+Policy name: WIN11-Lab-Compliance-Baseline
+
+Platform: Windows 10 and later.
+
+Description: Baseline compliance requirements for the Windows 11 Intune lab device.
+
+Configuration performed
+
+The compliance policy included the following settings:
+
+1. Project Overview
+
+This project documents hands-on practice with Microsoft Intune for Windows endpoint management and security configuration.
+
+The objective was to explore how an IT administrator can use Microsoft Intune to apply security requirements to managed Windows devices, configure Windows Defender Firewall settings, and monitor policy deployment and device compliance.
+
+Environment:
+
+* Device: Windows 11 virtual machine.
+* Virtualization platform: VMware Workstation 17 Player.
+* Endpoint management platform: Microsoft Intune.
+* Identity platform: Microsoft Entra ID.
+* Management approach: Cloud-based device and policy management.
+
+2. Practical One: Windows Device Compliance Policy
+
+Objective
+
+Create a compliance policy in Microsoft Intune to establish minimum security requirements for a managed Windows device.
+
+Policy Configuration
+
+Policy name: WIN11-Lab-Compliance-Baseline
+
+Platform: Windows 10 and later.
+
+Description: Baseline compliance requirements for the Windows 11 Intune lab device.
+
+Configuration performed
+
+The compliance policy included the following settings:
+
+Setting   Configuration
+
+Minimum OS version > 10.0.22621.0
+
+Firewall >  Required
+
+Antivirus > Required
+
+Antispyware > Required
+
+Microsoft Defender Antimalware > Required
+
+Microsoft Defender security intelligence > Required to be up to date
+
+Real-time protection > Required
+
+The policy was assigned to All Devices.
+
+The configured noncompliance action was to mark a device noncompliant immediately if it failed to meet the applicable requirements.
+
+Results
+
+The Intune compliance monitoring page displayed:
+
+* Compliant devices: 1
+* Noncompliant devices: 0
+* Other devices: 0
+* Total devices: 1
+
+This indicated that the device was reported as compliant at the time of observation.
+
+Important distinction: A compliant status confirms that Intune reported the device as meeting the configured compliance requirements. It does not prove that every possible security control on the device is effective.
+
+3. Practical Two: Windows Defender Firewall Configuration
+
+Objective
+
+Create a device configuration profile to manage Windows Defender Firewall settings through Microsoft Intune.
+
+Policy details
+
+Profile name: WIN11-LAB-Windows-FIREWALL
+
+Platform: Windows.
+
+Description: Configure Windows Defender Firewall settings to protect the Windows 11 lab device from unauthorized network connections.
+
+Verification
+
+The Intune policy summary displayed the following results: 
+Status  Devices
+
+Succeeded >1
+
+Error >0
+
+Conflict >0
+
+Not applicable >0
+
+In progress >0
+
+This demonstrated that Intune reported a successful policy application for one device.
+
+On the Windows 11 virtual machine, Windows PowerShell was used to inspect the firewall profiles.
+
+Command executed: Get-NetFirewallProfile |
+Format-List Name, Enabled, DefaultInboundAction, DefaultOutboundAction
+
+The output showed:
+Firewall profile | Enabled | Inbound action | Outbound action
+Domain.             True.       Block.         Allow
+Private.            True.      Block.           Allow
+Public.             True.       Block.          Allow
+
+
+Interpretation
+
+* Domain: Applies when Windows identifies a network as a domain network.
+* Private: Applies to networks classified as private.
+* Public: Applies to networks classified as public.
+* Enabled = True: The firewall is enabled for the profile.
+* Inbound = Block: Unsolicited inbound connections are blocked by default, subject to applicable rules and exceptions.
+* Outbound = Allow: Outbound connections are allowed by default unless a rule or other applicable configuration blocks them.
+
+The PowerShell output showed that all three firewall profiles were enabled, with inbound traffic blocked by default and outbound traffic allowed by default.
+
+Important distinction: The PowerShell output shows the firewall’s effective profile settings at the time of inspection. It does not, by itself, prove that every setting came from Intune or that the profile will prevent every unauthorized connection.
+
+4. Skills Practised
+
+During these practical exercises, I worked on:
+
+* Microsoft Intune device configuration profiles.
+* Windows device compliance policies.
+* Windows endpoint security requirements.
+* Windows Defender Firewall profiles.
+* Policy assignment to device groups.
+* Intune policy deployment monitoring.
+* Compliance status monitoring.
+* Windows PowerShell administration.
+* Verification of endpoint security settings.
+* Interpretation of policy deployment results.
+
+5. Key Lessons Learned
+
+Compliance policies and configuration profiles serve different purposes
+
+A compliance policy evaluates whether a device meets defined requirements.
+
+A configuration profile delivers supported configuration settings to a device.
+
+For example, a compliance policy can require the firewall to be enabled, while a configuration profile can configure supported firewall settings.
+
+Policy deployment must be verified
+
+Creating a policy is not the end of the process.
+
+An administrator should examine Intune’s deployment reports and, where appropriate, verify the resulting settings on the managed device.
+
+Device compliance is not the same as complete security
+
+A device reported as compliant can still have security weaknesses that are not covered by the configured compliance policy.
+
+Compliance policies should therefore be combined with appropriate security configurations, monitoring, updates, and other endpoint protection measures.
+
+Conclusion
+
+This lab provided practical exposure to Microsoft Intune endpoint management.
+
+I created a Windows compliance policy, configured a Windows Firewall device configuration profile, reviewed policy assignment and deployment status, and used PowerShell to inspect firewall settings.
+
+These exercises strengthened my understanding of how IT administrators can use cloud-based endpoint management to enforce security requirements and monitor managed Windows devices.
