@@ -1,0 +1,104 @@
+Microsoft Intune: Win32 Application Deployment and Uninstallation
+
+Project Overview
+
+In this practical lab, I used Microsoft Intune to deploy and uninstall a Win32 application on a Windows 11 virtual machine.
+
+The application used for this exercise was 7-Zip 26.02 (x64 edition). I packaged the application for deployment through Intune, configured application assignments, and tested the installation and uninstallation workflows.
+
+The purpose of this project was to understand how IT administrators can manage application deployment and removal on Windows devices using Microsoft Intune.
+
+Lab Environment
+
+* Device: Windows 11 virtual machine
+* Virtualization platform: VMware Workstation Player
+* Endpoint management platform: Microsoft Intune admin center
+* Application: 7-Zip 26.02 (x64 edition)
+* Application type: Windows Win32 application
+* Deployment package: 7z2602-x64.intunewin
+* Test group: HR-GROUP
+
+Practical Objectives
+
+1. Package a Windows application for deployment through Intune.
+2. Configure a Win32 application in the Intune admin center.
+3. Configure application assignments.
+4. Test the application installation workflow.
+5. Configure an uninstallation assignment for HR-GROUP.
+6. Monitor application deployment status through Intune reporting.
+
+Implementation Steps
+
+1. Prepare the Application
+
+I prepared the 7-Zip application package for deployment through Microsoft Intune.
+
+The package used was:
+
+7z2602-x64.intunewin
+
+2. Configure the Win32 Application
+
+I configured 7-Zip as a Win32 application in the Microsoft Intune admin center.
+
+I reviewed the application configuration and assignment settings.
+
+3. Configure the Installation Assignment
+
+I configured an installation assignment under the Required deployment category.
+
+This assignment is intended to make the application install automatically on targeted devices.
+
+4. Configure the Uninstallation Assignment
+
+I configured an uninstallation assignment targeting HR-GROUP.
+
+This allowed me to practise controlling application removal through Intune group assignments.
+
+5. Test Installation and Uninstallation
+
+I tested the installation and uninstallation workflows on my Windows 11 lab environment.
+
+Both operations behaved as expected during my practical testing.
+
+6. Monitor Deployment Status
+
+I navigated to the application’s monitoring section in Intune and inspected the Device install status and User install status reports.
+
+The reports continued to display Not installed for the targeted device at the time of documentation, despite the successful practical tests.
+
+This highlighted an important endpoint management lesson: an application’s observed state on a device and its reported state in Intune should be verified separately.
+
+Further investigation may be necessary to confirm reporting synchronization, assignment scope, and application detection settings.
+
+Key Skills Practised
+
+* Microsoft Intune administration
+* Win32 application deployment
+* Application packaging
+* Application assignment management
+* User and device targeting
+* Application uninstallation
+* Endpoint application lifecycle management
+* Intune deployment monitoring
+* Basic troubleshooting of application reporting
+
+Key Lessons Learned
+
+* Intune supports centralized application deployment and removal.
+* Assignment types determine how applications are offered, installed, or removed.
+* Group targeting is important when controlling which users or devices receive an application assignment.
+* Successful installation on a device does not necessarily mean Intune’s reporting has updated.
+* Installation detection rules and assignment configuration are important when troubleshooting deployment status.
+
+Conclusion
+
+This practical gave me hands-on experience with the application management capabilities of Microsoft Intune.
+
+I practised configuring a Win32 application, managing installation and uninstallation assignments, and checking deployment reports.
+
+I will continue expanding this lab by exploring device configuration profiles, compliance policies, and other endpoint management features.
+
+Project status: Installation and uninstallation workflows tested; Intune reporting discrepancy remains to be verified.
+
+Environment: Personal learning homelab.
