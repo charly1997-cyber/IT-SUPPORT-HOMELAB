@@ -1,0 +1,52 @@
+Project Overview
+
+This practical demonstrates how to remotely restart an enrolled Windows 11 device using the Microsoft Intune admin center and verify that the device reconnects after restarting.
+
+Lab Environment
+
+* Device: Windows 11 virtual machine
+* Virtualization: VMware Workstation Player
+* Device management: Microsoft Intune
+* Device name: INTUNE-AD-DC
+
+Objectives
+
+* Locate an enrolled Windows device in Intune.
+* Identify the available remote device management actions.
+* Initiate a remote restart.
+* Verify that Windows restarts successfully.
+* Confirm that the device checks in with Intune again.
+
+Procedure
+
+1. Opened the Microsoft Intune admin center.
+2. Navigated to Devices → All devices.
+3. Selected the enrolled device named INTUNE-AD-DC.
+4. Opened the device’s additional actions menu.
+5. Navigated to Remote actions → Restart.
+6. Initiated the restart.
+7. Waited for Windows to restart and return to the desktop.
+8. Reopened the device overview in Intune to verify its status.
+
+Results
+
+* Windows displayed a restart notification.
+* The virtual machine restarted successfully.
+* The device subsequently checked in with Intune.
+* The device remained marked as compliant.
+
+Skills Demonstrated
+
+* Microsoft Intune device administration
+* Remote endpoint management
+* Windows 11 administration
+* Device check-in verification
+* Basic endpoint troubleshooting
+
+Key Learning
+
+Remote restart allows an administrator to restart a managed Windows device without manually initiating the restart inside the operating system. After a remote action, the administrator should verify that the device reconnects and resumes reporting its status.
+
+Conclusion
+
+Successfully performed a remote restart of an enrolled Windows 11 virtual machine through Microsoft Intune and verified the device’s subsequent check-in and compliance status.
